@@ -1,0 +1,12 @@
+pipeline {
+stages {
+    stage('Checkout GIT') {
+        steps {
+            echo 'Pulling .....';
+            git branch : 'ismail-back',
+            url : 'https://github.com/nesrine-azaiez/DevOpsFirst.git'
+
+        }
+        }
+}
+}
