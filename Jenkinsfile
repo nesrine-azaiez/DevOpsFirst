@@ -31,6 +31,13 @@ stages {
                         sh  'mvn compile'
                     }
                 }
+                stage('SonarQube stage') {
+
+                            steps {
+                            sh'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=bouchahoua99 -e'
+
+                            }
+                        }
                  stage('MVN PACKAGE'){
                               steps{
                                   sh  'mvn package'
