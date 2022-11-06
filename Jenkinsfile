@@ -42,7 +42,11 @@ stages {
                               steps{
                                   sh  'mvn package'
                               }
-                        }
 
+stage("Test JUnit /Mockito"){
+                                 steps {
+                                             sh 'mvn test'
+                                 }
+                           }
 }
 }
