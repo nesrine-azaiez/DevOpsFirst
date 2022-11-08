@@ -17,7 +17,7 @@ public class OperateurDto {
 
     private String password;
     public static OperateurDto toDto(Operateur operateur) {
-        if (operateur == null) {throw new InvalidEntityException("objet invalide");}
+        if (operateur == null) return null ;
         return OperateurDto.builder()
                 .idOperateur(operateur.getIdOperateur())
                 .nom(operateur.getNom())

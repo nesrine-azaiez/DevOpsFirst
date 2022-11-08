@@ -31,18 +31,18 @@ public class OperateurServiceImpl implements IOperateurService {
 	public OperateurDto addOperateur(OperateurDto o) {
 		long start = System.currentTimeMillis();
 		log.info("In method addOperateur of OperateurService");
-		operateurRepository.save(OperateurDto.toOperateur(o));
+		Operateur savedOperateur=operateurRepository.save(OperateurDto.toOperateur(o));
 		log.info("out of method addOperateur of OperateurService");
 		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-		return  o;
+		return  OperateurDto.toDto(savedOperateur);
 	}
 
 	@Override
-	public void deleteOperateur(Long id) {
+	public void deleteOperateur(OperateurDto operateurDto) {
 		long start = System.currentTimeMillis();
 		log.info("In method deleteOperateur of OperateurService");
-		operateurRepository.deleteById(id);
+		operateurRepository.delete(OperateurDto.toOperateur(operateurDto));
 		log.info("out of method deleteOperateur of OperateurService");
 		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
