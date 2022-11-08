@@ -1,52 +1,93 @@
 package tn.esprit.rh.achat.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import tn.esprit.rh.achat.dto.ReglementDto;
 import tn.esprit.rh.achat.entities.Reglement;
-import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.repositories.ReglementRepository;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
+@AllArgsConstructor
 public class ReglementServiceImpl implements IReglementService {
 
-	@Autowired
-	FactureRepository factureRepository;
-	@Autowired
-	ReglementRepository reglementRepository;
+	private final ReglementRepository reglementRepository;
 	@Override
-	public List<Reglement> retrieveAllReglements() {
-		return (List<Reglement>) reglementRepository.findAll();
+	public List<ReglementDto> retrieveAllReglements() {
+		return ReglementDto.toListOfDto((List<Reglement>) reglementRepository.findAll());
 	}
 
 	@Override
-	public Reglement addReglement(Reglement r) {
-        reglementRepository.save(r);
-		return r;
+	public ReglementDto addReglement(ReglementDto reglementDto) {
+		long start = System.currentTimeMillis();
+		log.info("In method addReglement of ReglementServic");
+		ReglementDto result = ReglementDto.toDto(reglementRepository.save(ReglementDto.toEntity(reglementDto)));
+		log.info("out of method addReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return result;
 	}
 
 	@Override
-	public Reglement retrieveReglement(Long id) {
-		Reglement reglement = reglementRepository.findById(id).orElse(null);
-		
-		return reglement;
+	public ReglementDto retrieveReglement(Long id) {
+		long start = System.currentTimeMillis();
+		log.info("In method retrieveReglement of ReglementServic");
+		ReglementDto result =  reglementRepository
+				.findById(id)
+				.map(ReglementDto::toDto)
+				.orElse(null);
+		log.info("out of method retrieveReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return result;
 	}
 
 	@Override
-	public List<Reglement> retrieveReglementByFacture(Long idFacture) {
-		List<Reglement> reglements= reglementRepository.retrieveReglementByFacture(idFacture);
-		return reglements;
-		
-//		ou bien(Sans JPQL)
-//		Facture f= factureRepository.findById(idFacture).get();
-//		return (List<Reglement>) f.getReglements();
+	public ReglementDto updateReglement(ReglementDto r) {
+		long start = System.currentTimeMillis();
+		log.info("In method updateReglement of ReglementServic");
+		Reglement updatedReglement = reglementRepository.save(ReglementDto.toEntity(r));
+		log.info("out of method updateReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return ReglementDto.toDto(updatedReglement);
+	}
+
+
+	@Override
+	public void deleteReglement(ReglementDto r) {
+		long start = System.currentTimeMillis();
+		log.info("In method deleteReglement of ReglementServic");
+		reglementRepository.delete(ReglementDto.toEntity(r));
+		log.info("out of method deleteReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+	}
+
+	@Override
+	public List<ReglementDto> retrieveReglementByFacture(Long idFacture) {
+		long start = System.currentTimeMillis();
+		log.info("In method retrieveReglementByFacture of ReglementServic");
+		List<ReglementDto> result =  ReglementDto.toListOfDto(reglementRepository.retrieveReglementByFacture(idFacture));
+		log.info("out of method retrieveReglementByFacture ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return result;
 	}
 
 	@Override
 	public float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate) {
-		return reglementRepository.getChiffreAffaireEntreDeuxDate( startDate, endDate);
+		long start = System.currentTimeMillis();
+		log.info("In method retrieveReglementByFacture of ReglementServic");
+		log.info("out of method retrieveReglementByFacture ReglementServic");
+		float result = reglementRepository.getChiffreAffaireEntreDeuxDate( startDate, endDate);
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return result;
 	}
 
 }
