@@ -1,5 +1,13 @@
 import java.text.SimpleDateFormat
 pipeline {
+environment {
+        registry = "ismailbouchahoua
+                    /
+                    projetdevop"
+        registryCredential = 'dckr_pat_DLqYC-nW2MIuIg04Dko4zcf_02w'
+        dockerImage = ''
+    }
+
 agent any
 stages {
     stage('Checkout GIT') {
@@ -48,6 +56,27 @@ stage("Test JUnit /Mockito"){
                                              sh 'mvn test'
                                  }
                            }
+                           stage('Building our image') {
+                                                           steps {
+                                                               script {
+                                                               dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                                                                       }
+                                                           }
+                                    }
+
+                                   stage('Deploy our image') {
+                                                           steps {
+                                                               script {
+                                                               docker.withRegistry( '', registryCredential ) {
+                                                               dockerImage.push()}
+                                                                       }
+                                                           }
+                                   }
+                                   stage('Cleaning up') {
+                                                           steps {
+                                                           sh "docker rmi $registry:$BUILD_NUMBER"
+                                                           }
+                                   }
                            stage("NEXUS"){
                                                   steps{
                                                           sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.188:8081//repository/maven-releases -Dfile=target/docker-spring-boot.jar'
