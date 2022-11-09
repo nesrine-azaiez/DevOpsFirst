@@ -1,10 +1,10 @@
 import java.text.SimpleDateFormat
 pipeline {
-/**environment {
+environment {
         registry = "ismailbouchahoua/projetdevop"
         registryCredential = 'dckr_pat_DLqYC-nW2MIuIg04Dko4zcf_02w'
         dockerImage = ''
-    }**/
+    }
 
 agent any
 stages {
@@ -64,7 +64,7 @@ stage("Test JUnit /Mockito"){
                                              sh 'mvn test'
                                  }
                            }
-                           /*stage('Building our image') {
+                           stage('Building our image') {
                                                            steps {
                                                                script {
                                                                dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -84,8 +84,8 @@ stage("Test JUnit /Mockito"){
                                                            steps {
                                                            sh "docker rmi $registry:$BUILD_NUMBER"
                                                            }
-                                   }*/
-                                   stage('Building our image') {
+                                   }
+                                  /* stage('Building our image') {
                                                   steps {
                                                                                       sh 'docker build -t ismailbouchahoua/projetdevop'
                                                                                   }
@@ -101,7 +101,7 @@ stage("Test JUnit /Mockito"){
                                                                                                                                                                                                                  sh 'echo "Docker is pushing ...."'
                                                                                                                                                                                                                  sh 'docker push ismailbouchahoua/projetdevop:156 '
                                                                                                                                                                                                         }
-                                                                                                                                                                                                  }
+                                                                                                                                                                                                  }*/
 
 }
 }
