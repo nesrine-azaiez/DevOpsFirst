@@ -102,6 +102,11 @@ stage("Test JUnit /Mockito"){
                                                                                                                                                                                                                  sh 'docker push ismailbouchahoua/projetdevop:156 '
                                                                                                                                                                                                         }
                                                                                                                                                                                                   }*/
+                                  stage('DOCKER COMPOSE') {
+                                                          steps {
+                                                                      sh 'docker-compose up -d --build'
+                                                          }
+                                          }
 
 }
 }
