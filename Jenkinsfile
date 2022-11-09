@@ -49,6 +49,11 @@ stages {
                                   sh  'mvn package'
                               }
                                }
+                               stage("NEXUS"){
+                                                                                 steps{
+                                                                                         sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0.1 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.188:8081//repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                                                                                         }
+                                                                  }
 stage("Test JUnit /Mockito"){
                                  steps {
                                              sh 'mvn test'
@@ -92,10 +97,6 @@ stage("Test JUnit /Mockito"){
                                                                                                                                                                                                                  sh 'docker push ismailbouchahoua/projetdevop:156 '
                                                                                                                                                                                                         }
                                                                                                                                                                                                   }
-                           stage("NEXUS"){
-                                                  steps{
-                                                          sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0.1 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.188:8081//repository/maven-releases -Dfile=target/docker-spring-boot.jar'
-                                                          }
-                                   }
+
 }
 }
