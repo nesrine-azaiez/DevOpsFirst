@@ -51,7 +51,7 @@ stages {
                                }
                                stage("NEXUS"){
                                                                                  steps{
-                                                                                         sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=deploymentRepo -Durl=http://192.168.1.188:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
+                                                                                         sh 'mvn deploy:deploy-file -DgroupId=tn.esprit.rh -DartifactId=achat -Dversion=1.0 -DgeneratePom=true -Dpackaging=jar -DrepositoryId=maven-releases -Durl=http://192.168.1.188:8081/repository/maven-releases -Dfile=target/docker-spring-boot.jar'
                                                                                          }
                                                                   }
                       /*stage("nexus deploy"){
