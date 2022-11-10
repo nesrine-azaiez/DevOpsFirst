@@ -108,7 +108,8 @@ stage("Test JUnit /Mockito"){
                                                           }
                                           }
 
-                        }post {
+                        }
+                                  post {
 
                                              success {
                                                  mail to: "ismail.bouchahoua@esprit.tn ",
