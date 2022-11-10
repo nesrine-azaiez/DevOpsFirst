@@ -1,6 +1,4 @@
 package tn.esprit.rh.achat;
-
-
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -16,20 +14,19 @@ import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.*;
 @SpringBootTest(classes =FournisseurServiceMockTest.class)
 @ExtendWith(MockitoExtension.class)
-public class FournisseurServiceMockTest {
-
+class FournisseurServiceMockTest {
     @Mock
     FournisseurRepository fournisseurRepository;
 
     @InjectMocks
     FournisseurServiceImpl fournisseurServiceImpl;
 
-    Fournisseur fournisseur = new Fournisseur("f1aa", "2", CategorieFournisseur.CONVENTIONNE);
+    Fournisseur fournisseur = new Fournisseur("f1", "l1");
 
     List<Fournisseur> listFournisseur = new ArrayList<Fournisseur>() {
         {
-            add(new Fournisseur("f1aa", "21", CategorieFournisseur.CONVENTIONNE));
-            add(new Fournisseur("f1aa", "2", CategorieFournisseur.CONVENTIONNE));
+            add(new Fournisseur("f2", "l2"));
+            add(new Fournisseur("f3", "l3"));
         }
     };
     @Test
@@ -51,7 +48,7 @@ public class FournisseurServiceMockTest {
     }
     @Test
     void testaddFournisseur() {
-        Fournisseur fournisseur = new Fournisseur("f1aa", "2", CategorieFournisseur.CONVENTIONNE);
+        Fournisseur fournisseur = new Fournisseur("f3", "l3");
         when(fournisseurRepository.save(isA(Fournisseur.class))).thenAnswer(invocation -> (Fournisseur) invocation.getArguments()[0]);
         Fournisseur returnedObj = fournisseurServiceImpl.addFournisseur(fournisseur);
         ArgumentCaptor<Fournisseur> savedObjectArgument = ArgumentCaptor.forClass(Fournisseur.class);
@@ -70,6 +67,4 @@ public class FournisseurServiceMockTest {
         fournisseurServiceImpl.deleteFournisseur(fournisseur1.getIdFournisseur());
         verify(fournisseurRepository).deleteById(fournisseur1.getIdFournisseur());
     }
-
-
 }
