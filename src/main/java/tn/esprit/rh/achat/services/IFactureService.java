@@ -12,12 +12,11 @@ public interface IFactureService {
 
 	Facture addFacture(Facture f);
 
-	void cancelFacture(Long id);
+	Object cancelFacture(Long id);
 
 	Facture retrieveFacture(Long id);
-	
+
 	void assignOperateurToFacture(Long idOperateur, Long idFacture);
 
 	float pourcentageRecouvrement(Date startDate, Date endDate);
-
 }

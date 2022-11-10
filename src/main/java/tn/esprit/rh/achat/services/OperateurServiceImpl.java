@@ -14,61 +14,34 @@ import java.util.List;
 public class OperateurServiceImpl implements IOperateurService {
 
 	@Autowired
-	OperateurRepository operateurRepository;
+	OperateurRepository  operateurRepository;
 	@Override
-	public List<OperateurDto> retrieveAllOperateurs() {
-		long start = System.currentTimeMillis();
-		log.info("In method retrieveAllOperateurs of OperateurService");
-		List<OperateurDto> list = OperateurDto.toDtoList ((List<Operateur>) operateurRepository.findAll());
-		log.info("out of method retrieveAllOperateurs of OperateurService");
-		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-		return list;
-	}
-
-
-	@Override
-	public OperateurDto addOperateur(OperateurDto o) {
-		long start = System.currentTimeMillis();
-		log.info("In method addOperateur of OperateurService");
-		operateurRepository.save(OperateurDto.toOperateur(o));
-		log.info("out of method addOperateur of OperateurService");
-		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-		return  o;
+	public List<Operateur> retrieveAllOperateurs() {
+		return (List<Operateur>) operateurRepository.findAll();
 	}
 
 	@Override
-	public void deleteOperateur(Long id) {
-		long start = System.currentTimeMillis();
-		log.info("In method deleteOperateur of OperateurService");
-		operateurRepository.deleteById(id);
-		log.info("out of method deleteOperateur of OperateurService");
-		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-
-	}
-
-	@Override
-	public OperateurDto updateOperateur(OperateurDto o) {
-		long start = System.currentTimeMillis();
-		log.info("In method updateOperateur of OperateurService");
-		operateurRepository.save(OperateurDto.toOperateur(o));
-		log.info("out of method updateOperateur of OperateurService");
-		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+	public Operateur addOperateur(Operateur o) {
+		operateurRepository.save(o);
 		return o;
 	}
 
 	@Override
-	public OperateurDto retrieveOperateur(Long id) {
-		long start = System.currentTimeMillis();
-		log.info("In method retrieveOperateur of OperateurService");
+	public void deleteOperateur(Long id) {
+		operateurRepository.deleteById(id);
+
+	}
+
+	@Override
+	public Operateur updateOperateur(Operateur o) {
+		operateurRepository.save(o);
+		return o;
+	}
+
+	@Override
+	public Operateur retrieveOperateur(Long id) {
 		Operateur operateur = operateurRepository.findById(id).orElse(null);
-		log.info("out of method retrieveOperateur of OperateurService");
-		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-		return OperateurDto.toDto(operateur);
+		return operateur;
 	}
 
 }

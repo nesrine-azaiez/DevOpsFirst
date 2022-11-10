@@ -3,7 +3,7 @@ package tn.esprit.rh.achat.controllers;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.rh.achat.dto.OperateurDto;
+import tn.esprit.rh.achat.entities.Operateur;
 import tn.esprit.rh.achat.services.IOperateurService;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class OperateurController {
 	// http://localhost:8089/SpringMVC/operateur/retrieve-all-operateurs
 	@GetMapping("/retrieve-all-operateurs")
 	@ResponseBody
-	public List<OperateurDto> getOperateurs() {
+	public List<Operateur> getOperateurs() {
 		return operateurService.retrieveAllOperateurs();
 
 	}
@@ -28,14 +28,14 @@ public class OperateurController {
 	// http://localhost:8089/SpringMVC/operateur/retrieve-operateur/8
 	@GetMapping("/retrieve-operateur/{operateur-id}")
 	@ResponseBody
-	public OperateurDto retrieveOperateur(@PathVariable("operateur-id") Long operateurId) {
+	public Operateur retrieveOperateur(@PathVariable("operateur-id") Long operateurId) {
 		return operateurService.retrieveOperateur(operateurId);
 	}
 
 	// http://localhost:8089/SpringMVC/operateur/add-operateur
 	@PostMapping("/add-operateur")
 	@ResponseBody
-	public OperateurDto addOperateur(@RequestBody OperateurDto op) {
+	public Operateur addOperateur(@RequestBody Operateur op) {
 		return operateurService.addOperateur(op);
 
 	}
@@ -50,7 +50,7 @@ public class OperateurController {
 	// http://localhost:8089/SpringMVC/operateur/modify-operateur
 	@PutMapping("/modify-operateur")
 	@ResponseBody
-	public OperateurDto modifyOperateur(@RequestBody OperateurDto operateur) {
+	public Operateur modifyOperateur(@RequestBody Operateur operateur) {
 		return operateurService.updateOperateur(operateur);
 	}
 

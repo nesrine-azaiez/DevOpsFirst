@@ -1,20 +1,20 @@
 package tn.esprit.rh.achat.services;
 
-import tn.esprit.rh.achat.dto.OperateurDto;
+import tn.esprit.rh.achat.entities.Operateur;
 
 import java.util.List;
 
 
 public interface IOperateurService {
 
-	List<OperateurDto> retrieveAllOperateurs();
+	List<Operateur> retrieveAllOperateurs();
 
-	OperateurDto addOperateur(OperateurDto o);
+	Operateur addOperateur(Operateur o);
 
 	void deleteOperateur(Long id);
 
-	OperateurDto updateOperateur(OperateurDto o);
+	Operateur updateOperateur(Operateur o);
 
-	OperateurDto retrieveOperateur(Long id);
+	Operateur retrieveOperateur(Long id);
 
 }
