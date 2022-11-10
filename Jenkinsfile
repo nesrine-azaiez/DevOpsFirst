@@ -108,5 +108,28 @@ stage("Test JUnit /Mockito"){
                                                           }
                                           }
 
-}
+                        }post {
+
+                                             success {
+                                                 mail to: "ismail.bouchahoua@esprit.tn ",
+                                                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n, More info at: ${env.BUILD_URL}",
+                                                 from: 'ismail.bouchahoua@esprit.tn ',
+                                                 subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+                                             }
+
+                                             failure{
+                                                 mail to: "ismail.bouchahoua@esprit.tn ",
+                                                 subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                                                 from: 'ismail.bouchahoua@esprit.tn ',
+                                                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                                             }
+
+                                             changed{
+                                                 mail to: "ismail.bouchahoua@esprit.tn ",
+                                                 subject: "Jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+                                                 from: 'ismail.bouchahoua@esprit.tn ',
+                                                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+                                             }
+                                         }
+
 }
