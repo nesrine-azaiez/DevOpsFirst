@@ -2,6 +2,13 @@ import java.text.SimpleDateFormat
 
 
 pipeline {
+
+    environment {
+        registry = "nesrine/devops-cicd"
+        registryCredential = 'jenkins-dockerhub-token'
+        dockerImage = ''
+    }
+
     agent any
 
     stages {
