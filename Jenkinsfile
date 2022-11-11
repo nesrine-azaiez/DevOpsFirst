@@ -70,6 +70,12 @@ pipeline {
               }
          }
 
+         stage("Build the package"){
+                            steps {
+                                sh 'docker-compose up -d --build'
+                            }
+                        }
+
 
         stage('Building image') {
             steps {
