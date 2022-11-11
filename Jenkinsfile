@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         registry = "nesrineazaiez/devops-cicd"
-        registryCredential = 'jenkins-dockerhub-token'
+        registryCredential = '88fdb266-00c6-415b-bce4-6732f49b2a2a'
         dockerImage = ''
     }
 
