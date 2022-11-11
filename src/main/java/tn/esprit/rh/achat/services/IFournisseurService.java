@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface IFournisseurService {
 
-	List<Fournisseur> retrieveAllFournisseurs();
+    List<Fournisseur> retrieveAllFournisseurs();
 
-	Fournisseur addFournisseur(Fournisseur f);
+    Fournisseur addFournisseur(Fournisseur f);
 
-	void deleteFournisseur(Long id);
+    void deleteFournisseur(Long id);
 
-	Fournisseur updateFournisseur(Fournisseur f);
+    Fournisseur updateFournisseur(Fournisseur f);
 
-	Fournisseur retrieveFournisseur(Long id);
-	
-	void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur);
+    Fournisseur retrieveFournisseur(Long id);
+
+    void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur);
 
 }

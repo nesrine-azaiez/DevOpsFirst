@@ -11,14 +11,7 @@ import java.util.List;
 public interface StockRepository extends JpaRepository<Stock, Long> {
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

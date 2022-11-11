@@ -5,16 +5,17 @@ import tn.esprit.rh.achat.entities.CategorieProduit;
 import java.util.List;
 
 
+
 public interface ICategorieProduitService {
 
-	List<CategorieProduit> retrieveAllCategorieProduits();
+    List<CategorieProduit> retrieveAllCategorieProduits();
 
-	CategorieProduit addCategorieProduit(CategorieProduit cp);
+    CategorieProduit addCategorieProduit(CategorieProduit cp);
 
-	void deleteCategorieProduit(Long id);
+    void deleteCategorieProduit(Long id);
 
-	CategorieProduit updateCategorieProduit(CategorieProduit cp);
+    CategorieProduit updateCategorieProduit(CategorieProduit cp);
 
-	CategorieProduit retrieveCategorieProduit(Long id);
+    CategorieProduit retrieveCategorieProduit(Long id);
 
 }
