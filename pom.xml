@@ -11,7 +11,6 @@
 	<groupId>tn.esprit.rh</groupId>
 	<artifactId>achat</artifactId>
 	<version>6.1</version>
-	<packaging>jar</packaging>
 	<name>achat</name>
 	<description>Projet pour le module DevOps</description>
 	<properties>
