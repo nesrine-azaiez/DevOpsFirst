@@ -92,6 +92,11 @@ pipeline {
             }
         }
 
+                 stage("nexus deploy"){
+                      steps{
+                           sh 'mvn  deploy'
+                      }
+                 }
 
         stage('Deploy image') {
             steps {
