@@ -70,13 +70,7 @@ pipeline {
                        sh 'mvn test'
                   }
          }
-/*
-         stage("nexus deploy"){
-              steps{
-                   sh 'mvn  deploy'
-              }
-         }
-*/
+
 
          stage("Build the package"){
                             steps {
@@ -93,12 +87,12 @@ pipeline {
             }
         }
 
-                 stage("nexus deploy"){
-                      steps{
-                           sh 'mvn  deploy'
+         stage("nexus deploy"){
+              steps{
+                       sh 'mvn  deploy'
                       }
                  }
-
+/*
         stage('Deploy image') {
             steps {
                 script {
@@ -108,6 +102,7 @@ pipeline {
                 }
             }
         }
+        */
 
     }
 }
